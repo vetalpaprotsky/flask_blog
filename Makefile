@@ -1,4 +1,4 @@
 run:
-	FLASK_APP=app.py FLASK_ENV=development python3 -m flask run
+	FLASK_APP=app.py FLASK_ENV=development poetry run flask run
 
 .PHONY: run
