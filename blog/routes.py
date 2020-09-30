@@ -13,7 +13,7 @@ posts = [
     },
     {
         'author': 'Foo Bar',
-        'title': 'Blog Post 2',
+        'title': 'Blog post 2',
         'content': 'Second post content',
         'date_posted': 'April 21, 2018',
     },
@@ -42,7 +42,7 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash('Your account has been created! You are now able to log in!', 'success')
+        flash('Your account has been created! You are now able to log in.', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
@@ -60,7 +60,7 @@ def login():
             next_page = request.args.get('next', url_for('home'))
             return redirect(next_page)
         else:
-            flash('Login unsuccessful. Please check username and password.', 'danger')
+            flash('Login unsuccessful. Please check email and password.', 'danger')
 
     return render_template('login.html', title='Login', form=form)
 
