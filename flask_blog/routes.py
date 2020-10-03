@@ -1,10 +1,10 @@
 import os
 import secrets
 from PIL import Image
-from blog import app, db, bcrypt
+from flask_blog import app, db, bcrypt
 from flask import render_template, url_for, flash, redirect, request
-from blog.forms import RegistrationForm, LoginForm, UpdateAccountForm
-from blog.models import User
+from flask_blog.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from flask_blog.models import User
 from flask_login import login_user, logout_user, current_user, login_required
 
 posts = [

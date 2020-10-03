@@ -15,4 +15,4 @@ login_manager.login_message_category = 'info'
 # Just running all of the code in routes.py file. In order to avoid the
 # circular imports error, routes.py needs to be imported at the bottom of
 # this file, because routes.py imports app instance from here.
-from blog import routes  # noqa: F401,E402
+from flask_blog import routes  # noqa: F401,E402

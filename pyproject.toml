@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "blog"
+name = "flask_blog"
 version = "0.1.0"
 description = ""
 authors = ["Vitalii Paprotskyi <vetalpaprotsky@gmail.com>"]
