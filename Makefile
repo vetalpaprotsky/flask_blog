@@ -1,5 +1,5 @@
 run_dev:
-	FLASK_APP=run.py FLASK_ENV=development poetry run flask run
+	FLASK_APP=run.py FLASK_ENV=development poetry run flask run $(ARGS)
 
 run_prod:
 	poetry run gunicorn -w 3 run:app
