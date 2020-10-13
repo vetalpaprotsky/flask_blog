@@ -13,6 +13,16 @@ poetry install --no-root
 ```
 
 
+If you're getting this error while installing dependencies:
+```
+ModuleNotFoundError: No module named 'distutils.util'
+```
+You will need to install distutils package first(https://askubuntu.com/questions/1239829/modulenotfounderror-no-module-named-distutils-util):
+```
+sudo apt install python3-distutils
+```
+
+
 Create `config.json` file in the project root directory. The sample file is `config_sample.json`.
 
 
@@ -24,6 +34,12 @@ from flask_blog import db, create_app
 app = create_app()
 app.app_context().push()
 db.create_all()
+```
+
+
+Install Make:
+```
+sudo apt install make
 ```
 
 
@@ -64,17 +80,17 @@ apt update && apt upgrade
 
 Set hostname:
 ```
-hostnamectl set-hostname flask_blog_server
+hostnamectl set-hostname flask-blog-server
 ```
 
 
-Now `hostname` command should output `flask_blog_server`.
+Now `hostname` command should output `flask-blog-server`.
 
 
 Set hostname in the `/etc/hosts` file:
 ```
 127.0.0.1       localhost
-10.10.100.100   flask_blog_server # Add this line.
+10.10.100.100   flask-blog-server # Add this line.
 ...
 ```
 
@@ -86,7 +102,7 @@ adduser johndoe
 ```
 
 
-Add `johndoe` user to `sudo` group. It will allow `johndoe` user to run commands with `sudo`:
+Add `johndoe` user to `sudo` group. It will allow `johndoe` to run commands with `sudo`:
 ```
 adduser johndoe sudo
 ```
@@ -99,7 +115,7 @@ ssh johndoe@10.10.100.100
 ```
 
 
-Set the SSH key based authentication(it's safer than the password one), so that you could SSH to the server without typing the password every time. Create `.ssh` directory in the `johndoe` home directory:
+Set the SSH key based authentication(it's safer than the password one), so that you could SSH to the server without typing the password every time. Create `.ssh` directory in the `johndoe` user home directory:
 ```
 mkdir ~/.ssh
 ```
@@ -114,6 +130,7 @@ Copy the SSH public key from your local machine to the remote server. Let's say 
 # This command must be executed on the local machine.
 scp ~/.ssh/id_rsa.pub johndoe@10.10.100.100:~/.ssh/authorized_keys
 ```
+
 
 Now your SSH public key should be copied to `~/.ssh/authorized_keys` file on the remote server.
 
@@ -133,12 +150,12 @@ ssh johndoe@10.10.100.100
 ```
 
 
-Disallow `root` login over SSH(it's dangerous to login as `root`) and disallow password authentication(you already have SSH key base authentication which is safer). Edit `/etc/ssh/sshd_config` to have:
+You should disallow `root` user login over SSH(it's dangerous to login as `root` user) and disallow password authentication(you already have SSH key base authentication which is safer). To do that, edit `/etc/ssh/sshd_config` to have:
 ```
 ...
-PermitRootLogin no # It will be set to 'yes' before editing
+PermitRootLogin no # It will be set to 'yes' before editing.
 ...
-PasswordAuthentication no # It will be set to 'yes' before editing
+PasswordAuthentication no # It will be set to 'yes' before editing, and might be commented.
 ...
 ```
 
@@ -162,7 +179,7 @@ sudo ufw default deny incoming # By default, deny all incoming traffic.
 sudo ufw allow ssh # Allow SSH port in order to be able to login.
 sudo ufw allow 5000 # Allow port 5000 for testing purpose.
 sudo ufw enable # Enable all the rules.
-sudo ufw status # Show which ports are allowed.
+sudo ufw status # Show the rules.
 ```
 
 
@@ -245,6 +262,9 @@ sudo supervisorctl reload
 ```
 
 
+The application should have been started in the background. Check the log files if something goes wrong.
+
+
 By default, the maximum file upload size in Nginx is 2 megabytes. Set it to 5 megabytes in the `/etc/nginx/nginx.conf` configuration file:
 ```
 ...
@@ -263,7 +283,7 @@ sudo systemctl restart nginx
 ```
 
 
-Now the server should be setup!
+Now the setup should be done!
 
 
 All credit to [Corey Schafer](https://www.youtube.com/channel/UCCezIgC97PvUuR4_gbFUs5g).
