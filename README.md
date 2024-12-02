@@ -284,6 +284,3 @@ sudo systemctl restart nginx
 
 
 Now the setup should be done!
-
-
-All credit to [Corey Schafer](https://www.youtube.com/channel/UCCezIgC97PvUuR4_gbFUs5g).
