@@ -162,7 +162,7 @@ PasswordAuthentication no # It will be set to 'yes' before editing, and might be
 
 Restart the SSH service:
 ```
-sudo systemctl restart sshd
+sudo systemctl restart ssh
 ```
 
 
